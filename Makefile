@@ -26,7 +26,7 @@ all: bin
 
 .PHONY: bin
 bin:
-	CGO_ENABLED=0 go build ${BUILD_FLAGS} -o kompose main.go
+	CGO_ENABLED=0 GO111MODULE=off go build ${BUILD_FLAGS} -o kompose main.go
 
 .PHONY: install
 install:
@@ -35,7 +35,7 @@ install:
 # kompile kompose for multiple platforms
 .PHONY: cross
 cross:
-	CGO_ENABLED=0 gox -osarch="darwin/amd64 linux/amd64 linux/arm windows/amd64" -output="bin/kompose-{{.OS}}-{{.Arch}}" $(BUILD_FLAGS)
+	CGO_ENABLED=0 gox -osarch="darwin/amd64 linux/amd64 linux/arm linux/arm64 windows/amd64" -output="bin/kompose-{{.OS}}-{{.Arch}}" $(BUILD_FLAGS)
 
 .PHONY: clean
 clean:
@@ -128,7 +128,6 @@ vendor-update:
 
 	# a field does not has json tag defined.
 	cp script/vendor-sync/types.go.txt vendor/k8s.io/kubernetes/pkg/api/types.go
-
 
 .PHONY: test-k8s
 test-k8s:

@@ -44,7 +44,7 @@
         },
         "annotations": {
           "kompose.cmd": "%CMD%",
-          "kompose.service.expose": "  batman.example.com ,, batwoman.example.com ",
+          "kompose.service.expose": "  batman.example.com/home ,, batwoman.example.com ",
           "kompose.version": "%VERSION%"
         }
       },
@@ -125,7 +125,7 @@
       "metadata": {
         "annotations": {
           "kompose.cmd": "%CMD%",
-          "kompose.service.expose": "  batman.example.com ,, batwoman.example.com ",
+          "kompose.service.expose": "  batman.example.com/home ,, batwoman.example.com ",
           "kompose.version": "%VERSION%"
         },
         "creationTimestamp": null,
@@ -146,7 +146,7 @@
           "metadata": {
             "annotations": {
               "kompose.cmd": "%CMD%",
-              "kompose.service.expose": "  batman.example.com ,, batwoman.example.com ",
+              "kompose.service.expose": "  batman.example.com/home ,, batwoman.example.com ",
               "kompose.version": "%VERSION%"
             },
             "creationTimestamp": null,
@@ -184,6 +184,11 @@
         "creationTimestamp": null,
         "labels": {
           "io.kompose.service": "web"
+        },
+        "annotations": {
+          "kompose.cmd": "%CMD%",
+          "kompose.service.expose": "  batman.example.com/home ,, batwoman.example.com ",
+          "kompose.version": "%VERSION%"
         }
       },
       "spec": {
@@ -193,6 +198,7 @@
             "http": {
               "paths": [
                 {
+                  "path": "/home",
                   "backend": {
                     "serviceName": "web",
                     "servicePort": 5000
